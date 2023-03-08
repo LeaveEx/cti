@@ -136,8 +136,6 @@ async def send_media_(c: Client, m: Message):
             reply_markup=InlineKeyboardMarkup([
                 [
                     InlineKeyboardButton("Channel 1", "channel1"),
-                    InlineKeyboardButton("Channel 2", "channel2"),
-                    InlineKeyboardButton("Channel 3", "channel3"),
                 ]
             ]),
             quote=True
@@ -151,10 +149,6 @@ async def get_mode(c: Client, cb: CallbackQuery):
     message_id = m.reply_to_message.message_id
     if match == 1:
         channel_tujuan = config.channel1
-    elif match == 2:
-        channel_tujuan = config.channel2
-    else:
-        channel_tujuan = config.channel3
     x = await c.copy_message(
         channel_tujuan,
         m.chat.id,
