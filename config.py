@@ -13,8 +13,6 @@ class Config:
     db_chid = int(getenv("DB_CHANNEL", "-1001691630680"))
     blacklisted_channel = [int(x) for x in getenv("BLACKLISTED_CHANNEL", "-1001874961981").split(",") if x is not None]
     channel1 = int(getenv("CHANNEL_1", "-1001515293309"))
-    channel2 = int(getenv("CHANNEL_2"))
-    channel3 = int(getenv("CHANNEL_3"))
 
 
 config = Config()
