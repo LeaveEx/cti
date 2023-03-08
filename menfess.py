@@ -47,7 +47,7 @@ def diam(id):
 	
 	
 # handling pesan command cuyy kembangin sesuka hati mu
-@bot.message_handler(commands=["pestart", "broadcast", "ping"], chat_types=["private"])
+@bot.message_handler(commands=["pestart", "pebroadcast", "peping"], chat_types=["private"])
 def garz(message):
 	id = message.chat.id 
 	teks = message.text 
@@ -70,12 +70,12 @@ def garz(message):
 		yamete.add(rawr)
 		kirim(id, mulai.format(nggih), parse_mode="markdown", reply_markup=yamete)
 	# ping
-	elif "/ping" in teks:
+	elif "/peping" in teks:
 		total = len(open("member.db", "r").readlines())
 		pong = f"Bot Aktif !!!!\nTotal Pengguna Bot : {total}"
 		kirim(id, pong)
 	# command broadcast untuk admin
-	elif "/broadcast" in teks:
+	elif "/pebroadcast" in teks:
 		if id in admin:
 			anjim = kirim(id, "Masukan Pesan Broadcast : ")
 			lanjut(anjim, broadcast)
