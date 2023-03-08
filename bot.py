@@ -10,7 +10,7 @@ from typing import Optional
 api_id = 2857053 
 api_hash = '4a01e3596661ba4bf609d15c1f9e129b'
 sesi_file = 'menfessbot'
-bot_token = 6176925571:AAE580KWJZm1scSYh-ltJcd0xsBC-Ytm0Ns
+bot_token = '6176925571:AAE580KWJZm1scSYh-ltJcd0xsBC-Ytm0Ns'
 
 menfessbot = TelegramClient(sesi_file, api_id, api_hash).start(bot_token=bot_token)
 
