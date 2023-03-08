@@ -62,13 +62,6 @@ def garz(message):
 		else:
 			file.write(value + "\n")
 			
-	# command start
-	if "/pestart" in teks:
-		nggih = '\n'.join(map(str, trigger))
-		yamete = ma(row_width=2)
-		rawr = bb(text="Channel Menfess", url=link)
-		yamete.add(rawr)
-		kirim(id, mulai.format(nggih), parse_mode="markdown", reply_markup=yamete)
 	# ping
 	elif "/peping" in teks:
 		total = len(open("member.db", "r").readlines())
@@ -88,8 +81,11 @@ def menfessin(message):
 	id = message.chat.id
 	teks = message.text
 	ah = tegar(teks)
+	ih = len(teks.split(" "))
 	if id in apaantuh:
 		kirim(id, f"Gagal Mengirim Menfess!!\n\nkamu baru saja mengirim menfess, beri jarak 15 menit untuk memposting kembali!")
+	elif ih < 3:
+		kirim(id, "Gagal Mengirim Menfess!!\n\ntidak boleh kurang dari 3 kata!!")
 	elif ah == False:
 		tag = '\n'.join(map(str, trigger))
 		kirim(id, f"Gagal Mengirim Menfess!!\n\nharap gunakan tag dibawah ini : \n{tag}")
