@@ -1,2 +1,5 @@
-python
-telethon
+pyrogram
+TgCrypto
+databases[aiosqlite]
+aiosqlite[user_db]
+python-dotenv
