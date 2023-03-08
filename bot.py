@@ -1,201 +1,142 @@
-import asyncio
-import sys
-from typing import Union
+try:
+	import telebot
+	import time
+	import os
+	import json
+	from dotenv import load_dotenv
+	from telebot import types
+except:
+	print("error! install dulu pytelegrambotapi dengan cara 'pip install pytelegrambotapi'")
 
-from pyrogram import Client as BotClient, filters, raw, idle
-from pyrogram.errors import ChatAdminRequired
-from pyrogram.types import (
-    Message,
-    InlineKeyboardMarkup,
-    InlineKeyboardButton, CallbackQuery
-)
-from config import config
-from db import db
-from fsubs_handler import handle_fsub
-from functions import b64_to_string, string_to_b64
+load_dotenv()
 
 
-class Client(BotClient):
-    def __init__(self, session_name, api_id, api_hash, bot_token):
-        super().__init__(session_name, api_id, api_hash, bot_token=bot_token)
-        self.fsub_ch_link = None
-        self.db_channel = None
-        self.bot_username = None
-
-    async def add_user_(self, m: Message):
-        user_id = m.from_user.id
-        if not await db.is_exist(user_id):
-            await db.add_user(user_id)
-            if config.log_channel:
-                await self.send_message(
-                    config.log_channel,
-                    f"#NEW_USER\n\nNama: {m.from_user.first_name}\nId: {m.from_user.id}\nLink: {m.from_user.mention}"
-                )
-
-    async def start(self):
-        await super().start()
-        try:
-            invite_link = await self.export_chat_invite_link(config.fsub_chid)
-            self.fsub_ch_link = invite_link
-        except ChatAdminRequired:
-            await self.send_message(
-                config.log_channel,
-                "**Bot harus menjadi admin di channel force subs!**\n**Sistem dimatikan**"
-            )
-            return sys.exit()
-        try:
-            self.db_channel = (await self.get_chat(config.db_chid)).invite_link
-        except ChatAdminRequired:
-            await self.send_message(
-                config.log_channel,
-                "**Bot harus menjadi admin di channel database!**\n**Sistem dimatikan**"
-            )
-            return sys.exit()
-        self.bot_username = (await self.get_me()).username
-
-    async def stop(self, *args, **kwargs):
-        return await super().stop()
-
-    async def leave_chat(
-        self,
-        chat_id: Union[int, str],
-        delete: bool = False
-    ):
-        await self.send_message(
-            chat_id,
-            "**Maaf, chat ini ada pada list banned dan tidak bisa diakses!**",
-        )
-        peer = await self.resolve_peer(chat_id)
-
-        if isinstance(peer, raw.types.InputPeerChannel):
-            return await self.send(
-                raw.functions.channels.LeaveChannel(
-                    channel=await self.resolve_peer(chat_id)
-                )
-            )
-        elif isinstance(peer, raw.types.InputPeerChat):
-            r = await self.send(
-                raw.functions.messages.DeleteChatUser(
-                    chat_id=peer.chat_id,
-                    user_id=raw.types.InputUserSelf()
-                )
-            )
-
-            if delete:
-                await self.send(
-                    raw.functions.messages.DeleteHistory(
-                        peer=peer,
-                        max_id=0
-                    )
-                )
-
-            return r
 
 
-bot = Client(
-    ":memory:",
-    config.api_id,
-    config.api_hash,
-    bot_token=config.bot_token
-)
-media_list = {}
+
+token = os.getenv("BOT_TOKEN")
+ch = os.getenv("CHANNEL")
+link = os.getenv("LINK")
+admin = json.loads(os.getenv("ADMIN"))
+trigger = json.loads(os.getenv("TAG"))
+delay = os.getenv("DELAY")
+mulai = '''
+Selamat Datang Di *Garz Menfess*
+kamu bebas mengirim menfess pada channel garzmenfess, jika ingin memposting menfess silahkan kirim pesan teks beserta tag dibawah ini :
+	
+*{}*
+''' # edit pesan mulai ubah sesuka hati
 
 
-@bot.on_message(filters.command("start") & filters.private)
-async def start_hndlr(c: Client, m: Message):
-    if m.from_user.id in await db.get_all_banned_user():
-        return await m.reply("Maaf, anda terban oleh owner kami.")
-    if len(m.command) == 1:
-        await c.add_user_(m)
-        return await m.reply(
-            "Hi",
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton("About Bot", "aboutbot"),
-                        InlineKeyboardButton("About Dev", "aboutdev")
-                    ]
-                ]
-            )
-        )
+# pake markdown? ubah jadi >> telebot.TeleBot(token, parse_mode="markdown")
+bot = telebot.TeleBot(token)
+kirim = bot.send_message 
+kopi = bot.copy_message 
+lanjut = bot.register_next_step_handler 
+ma = types.InlineKeyboardMarkup
+bb = types.InlineKeyboardButton
 
 
-@bot.on_message(
-    filters.text
-    | filters.media
-    & ~filters.sticker
-    
-)
-async def send_media_(c: Client, m: Message):
-    chat_type = m.chat.type
-    if chat_type == "private" and config.fsub_chid:
-        await c.add_user_(m)
-        await handle_fsub(c, m)
-        return await m.reply(
-            f"**Mau kirim {'media' if not m.text else 'pesan'} kemana?**",
-            reply_markup=InlineKeyboardMarkup([
-                [
-                    InlineKeyboardButton("Channel 1", "channel1"),
-                ]
-            ]),
-            quote=True
-        )
+
+apaantuh = []
+def diam(id):
+	data = int(id)
+	apaantuh.append(data)
+	time.sleep(delay)
+	apaantuh.remove(data)
+	
+	
+# handling pesan command cuyy kembangin sesuka hati mu
+@bot.message_handler(commands=["pestart", "pebroadcast", "peping"], chat_types=["private"])
+def garz(message):
+	id = message.chat.id 
+	teks = message.text 
+	
+	# kebutuhan broadcast
+	with open("member.db", "a+") as file:
+		file.seek(0)
+		value = str(id)
+		lines = file.read().splitlines()
+		if value in lines:
+			pass
+		else:
+			file.write(value + "\n")
+			
+	# command start
+	if "/pestart" in teks:
+		nggih = '\n'.join(map(str, trigger))
+		yamete = ma(row_width=2)
+		rawr = bb(text="Channel Menfess", url=link)
+		yamete.add(rawr)
+		kirim(id, mulai.format(nggih), parse_mode="markdown", reply_markup=yamete)
+	# ping
+	elif "/peping" in teks:
+		total = len(open("member.db", "r").readlines())
+		pong = f"Bot Aktif !!!!\nTotal Pengguna Bot : {total}"
+		kirim(id, pong)
+	# command broadcast untuk admin
+	elif "/pebroadcast" in teks:
+		if id in admin:
+			anjim = kirim(id, "Masukan Pesan Broadcast : ")
+			lanjut(anjim, broadcast)
 
 
-@bot.on_callback_query(filters.regex(r"channel(\d+)"))
-async def get_mode(c: Client, cb: CallbackQuery):
-    m = cb.message
-    match = int(cb.matches[0].group(1))
-    message_id = m.reply_to_message.message_id
-    if match == 1:
-        channel_tujuan = config.channel1
-    x = await c.copy_message(
-        channel_tujuan,
-        m.chat.id,
-        message_id,
-        caption=m.caption or None
-    )
-    if isinstance(x, Message):
-        message_id = x.message_id
-        chat_id = x.chat.id
-    else:
-        message_id = None
-        chat_id = None
-    await m.delete()
-    await m.reply(
-        "**Pesan berhasil terkirim, silakan lihat dengan klik tombol dibawah ini!**",
-        reply_markup=InlineKeyboardMarkup([
-            [
-                InlineKeyboardButton("Klik disini", url=f"https://t.me/c/{str(chat_id)[4:]}/{message_id}")
-            ]
-        ])
-    )
-    fwd = await c.forward_messages(
-        config.log_channel,
-        m.chat.id,
-        message_id
-    )
-    m = m.reply_to_message
-    await fwd.reply(
-        (
-            "**User mengirim pesan**\n"
-            f"Nama: {m.from_user.first_name}\n"
-            f"Id: {m.from_user.id}\n"
-            f"Username: {m.from_user.mention}"
-        )
-    )
+
+# handling teks menfess cuy
+@bot.message_handler(content_types=["text"])
+def menfessin(message):
+	id = message.chat.id
+	teks = message.text
+	ah = tegar(teks)
+	ih = len(teks.split(" "))
+	if id in apaantuh:
+		kirim(id, f"GAGAL MENGIRIM MENFESS!!\n\nkamu baru saja mengirim menfess, beri jarak {delay} detik untuk memposting kembali!")
+	elif ih < 3:
+		kirim(id, "GAGAL MENGIRIM MENFESS!!\n\ntidak boleh kurang dari 3 kata!!")
+	elif ah == False:
+		tag = '\n'.join(map(str, trigger))
+		kirim(id, f"GAGAL MENGIRIM MENFESS!!\n\nharap gunakan tag dibawah ini : \n{tag}")
+	elif ah == True:
+		pesan = kirim(ch, teks)
+		links = link + "/" + str(pesan.id)
+		linksk = links + "?comment=" + str(pesan.id)
+		kirim(id, f"*MENFESS CTN BERHASIL DI POSTING!!*", parse_mode="markdown", reply_markup=awikwokbanget(links, linksk))
+		diam(id)
+		
+# aninuneno tcih mendoksai
+def tegar(data):
+	for x in data.split(" "):
+		yow = x
+		for i in trigger:
+			yaw = i
+			if yaw in yow:
+				data = 1
+	if data == 1:
+		return True
+	else:
+		return False
+
+def broadcast(message):
+	id = message.chat.id 
+	pesans = message.message_id
+	with open("member.db", "r") as file:
+				lines = file.read().splitlines()
+				for x in lines:
+					try:
+						yy = int(x)
+						kopi(yy, id, pesans)
+					except:
+						print(f"gagal mengirim pesan kepada pengguna *{x}*\nmungkin bot telah diblok.")
+	kirim(id, "Pesan broadcast berhasil dikirim.")
 
 
-async def main():
-    try:
-        await db.connect()
-        await db.init()
-        print("Berjalan")
-        await bot.start()
-        await idle()
-        await bot.stop()
-    except KeyboardInterrupt:
-        return sys.exit()
 
 
-asyncio.get_event_loop().run_until_complete(main())
+def awikwokbanget(cek, cekin):
+	miaw = ma(row_width=2)
+	b1 = bb(text="Lihat Postingan", url=cek)
+	b2 = bb(text="Lihat Komentar", url=cekin)
+	miaw.add(b1, b2)
+	return miaw
+print("\n\nBOT TELAH AKTIF!!! @Ayato")
+bot.infinity_polling()
