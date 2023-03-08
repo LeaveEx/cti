@@ -63,7 +63,7 @@ def garz(message):
 			file.write(value + "\n")
 			
 			
-	if "/pestart" in teks:
+	if "=pestart" in teks:
 		yamete = ma(row_width=2)
 		rawr = bb(text="Channel Menfess", url=link)
 		yamete.add(rawr)
