@@ -67,7 +67,6 @@ def garz(message):
 		yamete = ma(row_width=2)
 		rawr = bb(text="Channel Menfess", url=link)
 		yamete.add(rawr)
-		kirim(id, mulai.format(nggih), parse_mode="markdown", reply_markup=yamete)
 	# ping
 	elif "/peping" in teks:
 		total = len(open("member.db", "r").readlines())
