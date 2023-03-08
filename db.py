@@ -1,4 +1,4 @@
-from Database import Database
+from db import Database
 
 
 class DB:
