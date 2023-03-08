@@ -47,7 +47,7 @@ def diam(id):
 	
 	
 # handling pesan command cuyy kembangin sesuka hati mu
-@bot.message_handler(commands=["pestart", "pebroadcast", "peping"], chat_types=["private"])
+@bot.message_handler(commands=["pebroadcast", "peping"], chat_types=["private"])
 def garz(message):
 	id = message.chat.id 
 	teks = message.text 
