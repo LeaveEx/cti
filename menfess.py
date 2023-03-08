@@ -62,6 +62,7 @@ def garz(message):
 		else:
 			file.write(value + "\n")
 			
+			
 	# ping
 	elif "/peping" in teks:
 		total = len(open("member.db", "r").readlines())
