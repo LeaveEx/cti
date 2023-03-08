@@ -46,7 +46,7 @@ async def start(event):
 async def handler(event):
         pesan = event.raw_text
  
-         if '<hllo>' in pesan:
+         if '<.>' in pesan:
             time.sleep(0.5)
             await bot.send_message(<group/ch>, pesan)
             return
