@@ -92,7 +92,7 @@ def menfessin(message):
 	if id in apaantuh:
 		kirim(id, f"GAGAL MENGIRIM MENFESS!!\n\nkamu baru saja mengirim menfess, beri jarak {delay} detik untuk memposting kembali!")
 	elif ih < 3:
-		kirim(id, "GAGAL MENGIRIM MENFESS!!\n\ntidak boleh kurang dari 3 kata!!")
+		kirim(id, "JOIN TERLEBIH DAHULU KE GROUP DAN CHANNEL JIKA SUDAH JOIN KALIAN BISA LANGSUNG KIRIM MENFESS!!")
 	elif ah == False:
 		tag = '\n'.join(map(str, trigger))
 		kirim(id, f"GAGAL MENGIRIM MENFESS!!\n\nharap gunakan tag dibawah ini : \n{tag}")
