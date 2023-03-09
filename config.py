@@ -1,19 +1,57 @@
-from dotenv import load_dotenv
-from os import getenv, path
+import os
 
-load_dotenv() if not path.exists("local.env") else load_dotenv("local.env")
+api_id = int(os.environ.get("API_ID", "#"))
+api_hash = os.environ.get("API_HASH", "#")
+bot_token = os.environ.get("BOT_TOKEN", "#")
+# =========================================================== #
 
+db_url = os.environ.get("DB_URL", "#")
+db_name = os.environ.get("DB_NAME", "telegram") #bisa diganti sesuai kebutuhan
+# =========================================================== #
 
-class Config:
-    api_id = int(getenv("API_ID", "2857053"))
-    api_hash = getenv("API_HASH", "4a01e3596661ba4bf609d15c1f9e129b")
-    bot_token = getenv("BOT_TOKEN", "6176925571:AAE580KWJZm1scSYh-ltJcd0xsBC-Ytm0Ns")
-    log_channel = int(getenv("LOG_CHANNEL", "-1001515293309"))
-    fsub_chid = int(getenv("FORCESUB_CHANNEL", "-1001515293309"))
-    db_chid = int(getenv("DB_CHANNEL", "-1001691630680"))
-    blacklisted_channel = [int(x) for x in getenv("BLACKLISTED_CHANNEL", "-1001874961981").split(",") if x is not None]
-    channel1 = int(getenv("CHANNEL_1", "-1001515293309"))
-    DB_URI = os.environ.get("DATABASE_URL", "")
+channel_1 = int(os.environ.get("CHANNEL_1", "#"))
+channel_2 = int(os.environ.get("CHANNEL_2", "#")) #untuk group comentar user
+channel_log = int(os.environ.get("CHANNEL_LOG", "#"))
+# =========================================================== #
 
+id_admin = int(os.environ.get("ID_ADMIN", "WAJIB_DIISI"))
+# =========================================================== #
 
-config = Config()
+batas_kirim = int(os.environ.get("BATAS_KIRIM", "5"))
+batas_talent = int(os.environ.get("BATAS_TALENT", "10"))
+batas_daddy_sugar = int(os.environ.get("BATAS_DADDY_SUGAR", "10"))
+batas_moansgirl = int(os.environ.get("BATAS_MOANSGIRL", "10"))
+batas_moansboy = int(os.environ.get("BATAS_MOANSBOY", "10"))
+batas_gfrent = int(os.environ.get("BATAS_GFRENT", "10"))
+batas_bfrent = int(os.environ.get("BATAS_BFRENT", "10"))
+# =========================================================== #
+
+biaya_kirim = int(os.environ.get("BIAYA_KIRIM", "10"))
+biaya_talent = int(os.environ.get("BIAYA_TALENT", "80"))
+biaya_daddy_sugar = int(os.environ.get("BIAYA_DADDY_SUGAR", "70"))
+biaya_moansgirl = int(os.environ.get("BIAYA_MOANSGIRL", "60"))
+biaya_moansboy = int(os.environ.get("BIAYA_MOANSBOY", "50"))
+biaya_gfrent = int(os.environ.get("BIAYA_GFRENT", "40"))
+biaya_bfrent = int(os.environ.get("BIAYA_BFRENT", "30"))
+# =========================================================== #
+
+hastag = os.environ.get("HASTAG", "#ctnboy #ctngirl #ctnrandom #ctnmutualan #ctnask #ctncurhat").replace(" ", "|").lower()
+# =========================================================== #
+
+pic_boy = os.environ.get("PIC_BOY", "https://telegra.ph/file/1f10b19be7da49dd8e08f.jpg")
+pic_girl = os.environ.get("PIC_GIRL", "https://telegra.ph/file/1f10b19be7da49dd8e08f.jpg")
+# =========================================================== #
+
+pesan_join = os.environ.get("PESAN_JOIN", "Join Terlebih Dahulu Ke Channel/Group")
+start_msg = os.environ.get("START_MSG", "Halo {mention} 🐻‍❄️\n\n<b>CTN MENFESS BOT</b> adalah Bot Auto Post, Semua Pesan Yang Kamu Kirim Akan Masuk Ke Channel @SIARANCTN. Silahkan Baca Help & Rules Terlebih Dahulu.")
+
+gagalkirim_msg = os.environ.get("GAGAL_KIRIM", """
+{mention}, Pesan Mu Gagal Terkirim Silahkan Gunakan Hashtag Berikut:
+
+#ctnboy (Untuk Identitas Laki-Laki)
+#ctngirl (Untuk Identitas perempuan)
+#ctnrandom (Untuk hal random)
+#ctnmutualan (Untuk mutualan)
+#ctnask (Untuk membagikan hal bodoh)
+#ctncurhat (Untuk curhat masalah)
+""")
