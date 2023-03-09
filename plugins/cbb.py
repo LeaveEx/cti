@@ -1,5 +1,5 @@
 from bot import Bot
-from config import id_admins
+from config import id_admin
 from Data import Data
 from pyrogram import filters
 from pyrogram.errors import MessageNotModified
@@ -10,7 +10,7 @@ from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, Message
 async def _about(client: Bot, msg: Message):
     await client.send_message(
         msg.chat.id,
-        Data.ABOUT.format(client.username, ID_ADMINS),
+        Data.ABOUT.format(client.username, id_admin),
         disable_web_page_preview=True,
         reply_markup=InlineKeyboardMarkup(Data.mbuttons),
     )
@@ -32,7 +32,7 @@ async def cb_handler(client: Bot, query: CallbackQuery):
     if data == "about":
         try:
             await query.message.edit_text(
-                text=Data.ABOUT.format(client.username, ID_ADMINS),
+                text=Data.ABOUT.format(client.username, id_admin),
                 disable_web_page_preview=True,
                 reply_markup=InlineKeyboardMarkup(Data.mbuttons),
             )
