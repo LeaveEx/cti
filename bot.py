@@ -92,7 +92,7 @@ def menfessin(message):
 	if id in apaantuh:
 		kirim(id, f"GAGAL MENGIRIM MENFESS!!\n\nkamu baru saja mengirim menfess, tunggu 15 menit untuk memposting kembali!")
 	elif ih < 3:
-		kirim(message, "JOIN TERLEBIH DAHULU KE GROUP DAN CHANNEL JIKA SUDAH JOIN KALIAN BISA LANGSUNG KIRIM MENFESS!!")
+		kirim(id, "JOIN TERLEBIH DAHULU KE GROUP DAN CHANNEL JIKA SUDAH JOIN KALIAN BISA LANGSUNG KIRIM MENFESS!!")
 	elif ah == False:
 		tag = '\n'.join(map(str, trigger))
 		kirim(id, f"GAGAL MENGIRIM MENFESS!!\n\nharap gunakan tag dibawah ini : \n{tag}")
@@ -100,7 +100,7 @@ def menfessin(message):
 		pesan = kirim(ch, teks)
 		links = link + "/" + str(pesan.id)
 		linksk = links + "?comment=" + str(pesan.id)
-		kirim(message, f"*MENFESS CTN BERHASIL DI POSTING!!*", parse_mode="markdown", reply_markup=awikwokbanget(links, linksk))
+		kirim(id, f"*MENFESS CTN BERHASIL DI POSTING!!*", parse_mode="markdown", reply_markup=awikwokbanget(links, linksk))
 		diam(id)
 		
 # aninuneno tcih mendoksai
