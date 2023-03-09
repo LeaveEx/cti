@@ -1,20 +1,20 @@
 import os
 
-api_id = int(os.environ.get("API_ID", "#"))
-api_hash = os.environ.get("API_HASH", "#")
-bot_token = os.environ.get("BOT_TOKEN", "#")
+api_id = int(os.environ.get("API_ID", "2857053"))
+api_hash = os.environ.get("API_HASH", "4a01e3596661ba4bf609d15c1f9e129b")
+bot_token = os.environ.get("BOT_TOKEN", "6057365695:AAHxOnS7bNXMIv-eoQEJWf7gn16KCaX72H0")
 # =========================================================== #
 
-db_url = os.environ.get("DB_URL", "#")
+db_url = os.environ.get("DB_URL", "postgres://zztrinel:3KfbmveDSJOJF415qbIn8tbTtWS1j12y@hansken.db.elephantsql.com/zztrinel")
 db_name = os.environ.get("DB_NAME", "telegram") #bisa diganti sesuai kebutuhan
 # =========================================================== #
 
-channel_1 = int(os.environ.get("CHANNEL_1", "#"))
-channel_2 = int(os.environ.get("CHANNEL_2", "#")) #untuk group comentar user
-channel_log = int(os.environ.get("CHANNEL_LOG", "#"))
+channel_1 = int(os.environ.get("CHANNEL_1", "-1001439465967"))
+channel_2 = int(os.environ.get("CHANNEL_2", "-1001215547362")) #untuk group comentar user
+channel_log = int(os.environ.get("CHANNEL_LOG", "-1001515293309"))
 # =========================================================== #
 
-id_admin = int(os.environ.get("ID_ADMIN", "WAJIB_DIISI"))
+id_admin = int(os.environ.get("ID_ADMIN", "2100705176, 742495738, 1680004937"))
 # =========================================================== #
 
 batas_kirim = int(os.environ.get("BATAS_KIRIM", "5"))
