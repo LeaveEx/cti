@@ -1,142 +1,82 @@
-try:
-	import telebot
-	import time
-	import os
-	import json
-	from dotenv import load_dotenv
-	from telebot import types
-except:
-	print("error! install dulu pytelegrambotapi dengan cara 'pip install pytelegrambotapi'")
+import config, sys, os, requests
 
-load_dotenv()
+from plugins import Database
+from pyrogram import Client, enums
+from pyrogram.types import BotCommand, BotCommandScopeAllPrivateChats
 
+data = []
 
+class Bot(Client):
+    def __init__(self):
+        super().__init__(
+            'menfess_bot',
+            api_id=config.api_id,
+            api_hash=config.api_hash,
+            plugins={
+                "root": "plugins"
+            },
+            bot_token=config.bot_token
+        )
+    async def start(self):
+        await super().start()
+        bot_me = await self.get_me()
 
+        db = Database(bot_me.id)
+        os.system('cls')
+        if not await db.cek_user_didatabase():
+            print(f'[!] Menambahkan data bot ke database...')
+            await db.tambah_databot()
+        print("[!] Database telah ready")
+        print(f"[!] Link Database Kamu : {config.db_url}")
+        print("================")
 
+        if config.channel_1:
+            try:
+                await self.export_chat_invite_link(config.channel_1)
+            except:
+                print(f'Harap periksa kembali ID [ {config.channel_1} ] pada channel 1')
+                print(f'Pastikan bot telah dimasukan kedalam channel dan menjadi admin')
+                print('-> Bot terpaksa dihentikan')
+                sys.exit()
+        if config.channel_2:
+            try:
+                await self.export_chat_invite_link(config.channel_1)
+            except:
+                print(f'Harap periksa kembali ID [ {config.channel_2} ] pada channel 2')
+                print(f'Pastikan bot telah dimasukan kedalam channel dan menjadi admin')
+                print('-> Bot terpaksa dihentikan')
+                sys.exit()
+        if config.channel_log:
+            try:
+                await self.export_chat_invite_link(config.channel_log)
+            except:
+                print(f'Harap periksa kembali ID [ {config.channel_log} ] pada channel log')
+                print(f'Pastikan bot telah dimasukan kedalam channel dan menjadi admin')
+                print('-> Bot terpaksa dihentikan')
+                sys.exit()
 
-token = os.getenv("BOT_TOKEN")
-ch = os.getenv("CHANNEL")
-link = os.getenv("LINK")
-admin = json.loads(os.getenv("ADMIN"))
-trigger = json.loads(os.getenv("TAG"))
-delay = os.getenv("DELAY")
-mulai = '''
-Selamat Datang Di *Garz Menfess*
-kamu bebas mengirim menfess pada channel garzmenfess, jika ingin memposting menfess silahkan kirim pesan teks beserta tag dibawah ini :
-	
-*{}*
-''' # edit pesan mulai ubah sesuka hati
-
-
-# pake markdown? ubah jadi >> telebot.TeleBot(token, parse_mode="markdown")
-bot = telebot.TeleBot(token)
-kirim = bot.send_message 
-kopi = bot.copy_message 
-lanjut = bot.register_next_step_handler 
-ma = types.InlineKeyboardMarkup
-bb = types.InlineKeyboardButton
-
-
-
-apaantuh = []
-def diam(id):
-	data = int(id)
-	apaantuh.append(data)
-	time.sleep(delay)
-	apaantuh.remove(data)
-	
-	
-# handling pesan command cuyy kembangin sesuka hati mu
-@bot.message_handler(commands=["pestart", "pebroadcast", "peping"], chat_types=["private"])
-def garz(message):
-	id = message.chat.id 
-	teks = message.text 
-	
-	# kebutuhan broadcast
-	with open("member.db", "a+") as file:
-		file.seek(0)
-		value = str(id)
-		lines = file.read().splitlines()
-		if value in lines:
-			pass
-		else:
-			file.write(value + "\n")
-			
-	# command start
-	if "/pestart" in teks:
-		nggih = '\n'.join(map(str, trigger))
-		yamete = ma(row_width=2)
-		rawr = bb(text="Channel Menfess", url=link)
-		yamete.add(rawr)
-		kirim(id, mulai.format(nggih), parse_mode="markdown", reply_markup=yamete)
-	# ping
-	elif "/peping" in teks:
-		total = len(open("member.db", "r").readlines())
-		pong = f"Bot Aktif !!!!\nTotal Pengguna Bot : {total}"
-		kirim(id, pong)
-	# command broadcast untuk admin
-	elif "/pebroadcast" in teks:
-		if id in admin:
-			anjim = kirim(id, "Masukan Pesan Broadcast : ")
-			lanjut(anjim, broadcast)
-
-
-
-# handling teks menfess cuy
-@bot.message_handler(content_types=["text"])
-def menfessin(message):
-	id = message.chat.id
-	teks = message.text
-	ah = tegar(teks)
-	ih = len(teks.split(" "))
-	if id in apaantuh:
-		kirim(id, f"GAGAL MENGIRIM MENFESS!!\n\nkamu baru saja mengirim menfess, tunggu 3 menit untuk memposting kembali!")
-	elif ih < 3:
-		kirim(id, "JOIN TERLEBIH DAHULU KE GROUP DAN CHANNEL JIKA SUDAH JOIN KALIAN BISA LANGSUNG KIRIM MENFESS!!")
-	elif ah == False:
-		tag = '\n'.join(map(str, trigger))
-		kirim(id, f"GAGAL MENGIRIM MENFESS!!\n\nharap gunakan tag dibawah ini : \n{tag}")
-	elif ah == True:
-		pesan = kirim(ch, teks)
-		links = link + "/" + str(pesan.id)
-		linksk = links + "?comment=" + str(pesan.id)
-		kirim(id, f"*MENFESS CTN BERHASIL DI POSTING!!*", parse_mode="markdown", reply_markup=awikwokbanget(links, linksk))
-		diam(id)
-		
-# aninuneno tcih mendoksai
-def tegar(data):
-	for x in data.split(" "):
-		yow = x
-		for i in trigger:
-			yaw = i
-			if yaw in yow:
-				data = 1
-	if data == 1:
-		return True
-	else:
-		return False
-
-def broadcast(message):
-	id = message.chat.id 
-	pesans = message.message_id
-	with open("member.db", "r") as file:
-				lines = file.read().splitlines()
-				for x in lines:
-					try:
-						yy = int(x)
-						kopi(yy, id, pesans)
-					except:
-						print(f"gagal mengirim pesan kepada pengguna *{x}*\nmungkin bot telah diblok.")
-	kirim(id, "Pesan broadcast berhasil dikirim.")
-
-
-
-
-def awikwokbanget(cek, cekin):
-	miaw = ma(row_width=2)
-	b1 = bb(text="Lihat Postingan", url=cek)
-	b2 = bb(text="Lihat Komentar", url=cekin)
-	miaw.add(b1, b2)
-	return miaw
-print("\n\nBOT TELAH AKTIF!!! @Ayato")
-bot.infinity_polling()
+        self.username = bot_me.username
+        self.id_bot = bot_me.id
+        data.append(self.id_bot)
+        await self.set_bot_commands([
+            BotCommand('status', '🍃 check status'), BotCommand('talent', '👙 talent konten / vcs'),
+            BotCommand('daddysugar', '👔 daddy sugar trusted'), BotCommand('moansgirl', '🧘‍♀️ moans girl'),
+            BotCommand('moansboy', '🧘 moans boy'), BotCommand('gfrent', '🤵 girl friend rent'),
+            BotCommand('bfrent', '🤵 boy friend rent')
+        ], BotCommandScopeAllPrivateChats())
+        
+        print('BOT TELAH AKTIF')
+    
+    async def stop(self):
+        await super().stop()
+        print('BOT BERHASIL DIHENTIKAN')
+    
+    async def kirim_pesan(self, x: str):
+        db = Database(config.id_admin).get_pelanggan()
+        pesan = f'<b>TOTAL USER ( {db.total_pelanggan} ) PENGGUNA 📊</b>\n'
+        pesan += f'➜ <i>Total user yang mengirim menfess hari ini adalah {x}/{db.total_pelanggan} user</i>\n'
+        pesan += f'➜ <i>Berhasil direset menjadi 0 menfess</i>'
+        url = f'https://api.telegram.org/bot{config.bot_token}'
+        a = requests.get(f'{url}/sendMessage?chat_id={config.channel_log}&text={pesan}&parse_mode=HTML').json()
+        requests.post(f'{url}/pinChatMessage?chat_id={config.channel_log}&message_id={a["result"]["message_id"]}&parse_mode=HTML')
+        requests.post(f'{url}/deleteMessage?chat_id={config.channel_log}&message_id={a["result"]["message_id"] + 1}&parse_mode=HTML')
