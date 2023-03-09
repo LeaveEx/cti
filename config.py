@@ -5,7 +5,7 @@ api_hash = os.environ.get("API_HASH", "4a01e3596661ba4bf609d15c1f9e129b")
 bot_token = os.environ.get("BOT_TOKEN", "6057365695:AAHxOnS7bNXMIv-eoQEJWf7gn16KCaX72H0")
 # =========================================================== #
 
-db_url = os.environ.get("DB_URL", "postgres://zztrinel:3KfbmveDSJOJF415qbIn8tbTtWS1j12y@hansken.db.elephantsql.com/zztrinel")
+db_url = os.environ.get("DB_URL", "mongodb+srv://muhamadfaiz:muhamadfaiz@cluster0.mpwspud.mongodb.net/?retryWrites=true&w=majority")
 db_name = os.environ.get("DB_NAME", "telegram") #bisa diganti sesuai kebutuhan
 # =========================================================== #
 
