@@ -85,11 +85,11 @@ def garz(message):
 # handling teks menfess cuy
 @bot.message_handler(content_types=["text"])
 def menfessin(message):
-	id = message.chat.id
+	id = chat.id
 	teks = message.text
 	ah = tegar(teks)
 	ih = len(teks.split(" "))
-	if teks in apaantuh:
+	if id in apaantuh:
 		kirim(id, f"GAGAL MENGIRIM MENFESS!!\n\nkamu baru saja mengirim menfess, tunggu 15 menit untuk memposting kembali!")
 	elif ih < 3:
 		kirim(id, "JOIN TERLEBIH DAHULU KE GROUP DAN CHANNEL JIKA SUDAH JOIN KALIAN BISA LANGSUNG KIRIM MENFESS!!")
