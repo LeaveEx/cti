@@ -85,7 +85,7 @@ def garz(message):
 # handling teks menfess cuy
 @bot.message_handler(content_types=["text"])
 def menfessin(message):
-	id = message.teks
+	id = message.chat
 	teks = message.text
 	ah = tegar(teks)
 	ih = len(teks.split(" "))
