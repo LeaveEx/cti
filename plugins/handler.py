@@ -39,7 +39,24 @@ async def on_message(client: Client, msg: Message):
 
         # anu = msg.caption if not msg.text else msg.text
         # print(f"-> {anu}")
-
+        
+START_MESSAGE = config.start_msg
+START_MESSAGE_BUTTONS = [
+         [InlineKeyboardButton('rules', url='https://t.me/siaranctn/1221')]
+]
+        
+        
+@Bot.on_message(filters.command('start') & filters.private)
+def start(bot, message):
+    text = START_MESSAGE
+    reply_markup = InlineKeyboardMarkup(START_MESSAGE_BUTTONS)
+    message.reply(
+        text=text,
+        reply_markup=reply_markup,
+        disable_web_page_preview=true
+    )
+    
+  
         command = msg.text or msg.caption
         if command != None:
             if command == '/start':  # menampilkan perintah start
