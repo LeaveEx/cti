@@ -55,7 +55,6 @@ def start(bot, message):
         reply_markup=reply_markup,
         disable_web_page_preview=true
     )
-    
   
         command = msg.text or msg.caption
         if command != None:
