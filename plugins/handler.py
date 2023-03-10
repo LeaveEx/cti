@@ -9,7 +9,7 @@ from bot import Bot
 
 START_MESSAGE = config.start_msg
 START_MESSAGE_BUTTONS = [
-         [InlineKeyboardButton('ʀᴜʟᴇs', url='https://t.me/siaranctn/1224')]
+         [InlineKeyboardButton('ʀᴜʟᴇs', url='https://t.me/siaranctn/1227')]
 ]
 
 
