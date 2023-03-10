@@ -38,8 +38,8 @@ biaya_bfrent = int(os.environ.get("BIAYA_BFRENT", "30"))
 hastag = os.environ.get("HASTAG", "#ctnboy #ctngirl #ctnrandom #ctnmutualan #ctnask #ctncurhat #ytaaa").replace(" ", "|").lower()
 # =========================================================== #
 
-pic_boy = os.environ.get("PIC_BOY", "")
-pic_girl = os.environ.get("PIC_GIRL", "")
+pic_boy = os.environ.get("PIC_BOY", "https://telegra.ph/file/1f10b19be7da49dd8e08f.jpg")
+pic_girl = os.environ.get("PIC_GIRL", "https://telegra.ph/file/1f10b19be7da49dd8e08f.jpg")
 # =========================================================== #
 
 pesan_join = os.environ.get("PESAN_JOIN", "Halo Kamu harus bergabung di CHANNEL/GROUP Terlebih dahulu untuk mengirim pesan ke @siaranctn.")
