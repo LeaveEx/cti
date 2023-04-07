@@ -7,10 +7,10 @@ from plugins import Database, Helper
 from plugins.command import *
 from bot import Bot
 
-#START_MESSAGE = config.start_msg
-#START_MESSAGE_BUTTONS = [
-         #[InlineKeyboardButton('ʀᴜʟᴇs', url='https://t.me/menfessks/64')]
-#]
+START_MESSAGE = config.start_msg
+START_MESSAGE_BUTTONS = [
+         [InlineKeyboardButton('ʀᴜʟᴇs', url='https://t.me/menfessks/64')]
+]
 
 
 #@Bot.on_message(filters.command('start') & filters.private)
@@ -249,7 +249,15 @@ async def on_message(client: Client, msg: Message):
         if command != None:
             return
 
-
+@Bot.on_message(filters.command('start') & filters.private)
+def start(bot, message):
+    text = START_MESSAGE
+    reply_markup = InlineKeyboardMarkup(START_MESSAGE_BUTTONS)
+    message.reply(
+        text=text,
+        reply_markup=reply_markup,
+        disable_web_page_preview=True
+    )
 
 @Bot.on_callback_query()
 async def on_callback_query(client: Client, query: CallbackQuery):
