@@ -43,15 +43,15 @@ pic_girl = os.environ.get("PIC_GIRL", "https://telegra.ph/file/1f10b19be7da49dd8
 # =========================================================== #
 
 pesan_join = os.environ.get("PESAN_JOIN", "Halo Kamu harus bergabung di CHANNEL/GROUP Terlebih dahulu untuk mengirim pesan ke @menfessks.")
-start_msg = os.environ.get("START_MSG", """
-Halo\n\n<b>MENFESS KS BOT</b> adalah Bot Auto Post, Semua Pesan Yang Kamu Kirim Akan Masuk Ke Channel @MENFESSKS. Silahkan kirim pesan anda menggunakan hastag dibawah ini:
+start_msg = os.environ.get("START_MSG", "Halo {mention} ⭐\n\n<b>MENFESS KS BOT</b> adalah Bot Auto Post, Semua Pesan Yang Kamu Kirim Akan Masuk Ke Channel @MENFESSKS. Silahkan kirim pesan anda menggunakan hastag dibawah ini:
+
 #ksboy (Untuk Identitas Laki-Laki)
 #ksgirl (Untuk Identitas perempuan)
 #ksrandom (Untuk hal random)
 #ksmutualan (Untuk mutualan)
 #ksask (Untuk membagikan hal bodoh)
 #kscurhat (Untuk curhat masalah)
-""")
+")
 
 gagalkirim_msg = os.environ.get("GAGAL_KIRIM", """
 {mention}, Pesan Mu Gagal Terkirim Silahkan Gunakan Hashtag Berikut:
