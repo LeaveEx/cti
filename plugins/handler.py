@@ -1,8 +1,7 @@
 import re
 
 from pyrogram import Client, filters
-from pyrogram.types import Message, CallbackQuery
-from pyrogram import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import Message, CallbackQuery, InlineKeyboardButton, InlineKeyboardButton
 
 from plugins import Database, Helper
 from plugins.command import *
