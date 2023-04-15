@@ -27,7 +27,7 @@ class Database():
             "ban": {},
             "admin": [],
             "kirimchannel": {
-                "photo": True,
+                "photo": False,
                 "video": False,
                 "voice": False
             }
