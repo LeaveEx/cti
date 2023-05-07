@@ -1,7 +1,7 @@
 import os
 
-api_id = int(os.environ.get("API_ID", "2857053"))
-api_hash = os.environ.get("API_HASH", "4a01e3596661ba4bf609d15c1f9e129b")
+api_id = int(os.environ.get("API_ID", "3330416"))
+api_hash = os.environ.get("API_HASH", "551d747d492ad11a10054fbf672d16e3")
 bot_token = os.environ.get("BOT_TOKEN", "6241997964:AAGuP2icL9Th4BYLbNhT5J5TamGG7Ej44Oo")
 # =========================================================== #
 
@@ -17,7 +17,7 @@ channel_log = int(os.environ.get("CHANNEL_LOG", "-1001812494582"))
 id_admin = int(os.environ.get("ID_ADMIN", "1680004937"))
 # =========================================================== #
 
-batas_kirim = int(os.environ.get("BATAS_KIRIM", "5"))
+batas_kirim = int(os.environ.get("BATAS_KIRIM", "2"))
 batas_talent = int(os.environ.get("BATAS_TALENT", "10"))
 batas_daddy_sugar = int(os.environ.get("BATAS_DADDY_SUGAR", "10"))
 batas_moansgirl = int(os.environ.get("BATAS_MOANSGIRL", "10"))
