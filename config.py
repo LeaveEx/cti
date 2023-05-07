@@ -35,7 +35,7 @@ biaya_gfrent = int(os.environ.get("BIAYA_GFRENT", "40"))
 biaya_bfrent = int(os.environ.get("BIAYA_BFRENT", "30"))
 # =========================================================== #
 
-hastag = os.environ.get("HASTAG", "#ctnbencong #ctnalay #ksboy #ksgirl #ksrandom #ksmutualan #ksask #kscurhat").replace(" ", "|").lower()
+hastag = os.environ.get("HASTAG", "#ctnbencong #ctnalay #ckfboy #ckfgirl #ckfrandom #ckfmutualan #ckfask #ckfcurhat").replace(" ", "|").lower()
 # =========================================================== #
 
 pic_boy = os.environ.get("PIC_BOY", "https://telegra.ph/file/1f10b19be7da49dd8e08f.jpg")
@@ -45,21 +45,21 @@ pic_girl = os.environ.get("PIC_GIRL", "https://telegra.ph/file/1f10b19be7da49dd8
 pesan_join = os.environ.get("PESAN_JOIN", "Halo Kamu harus bergabung di CHANNEL/GROUP Terlebih dahulu untuk mengirim pesan ke @menfessks.")
 start_msg = os.environ.get("START_MSG", """Halo {mention} ⭐\n\n<b>MENFESS KS BOT</b> adalah Bot Auto Post, Semua Pesan Yang Kamu Kirim Akan Masuk Ke Channel @MENFESSKS. Silahkan kirim pesan anda menggunakan hastag dibawah ini:
 
-#ksboy (Untuk Identitas Laki-Laki)
-#ksgirl (Untuk Identitas perempuan)
-#ksrandom (Untuk hal random)
-#ksmutualan (Untuk mutualan)
-#ksask (Untuk membagikan hal bodoh)
-#kscurhat (Untuk curhat masalah)
+#ckfboy (Untuk Identitas Laki-Laki)
+#ckfgirl (Untuk Identitas perempuan)
+#ckfrandom (Untuk hal random)
+#ckfmutualan (Untuk mutualan)
+#ckfask (Untuk membagikan hal bodoh)
+#ckfcurhat (Untuk curhat masalah)
 """)
 
 gagalkirim_msg = os.environ.get("GAGAL_KIRIM", """
 {mention}, Pesan Mu Gagal Terkirim Silahkan Gunakan Hashtag Berikut:
 
-#ksboy (Untuk Identitas Laki-Laki)
-#ksgirl (Untuk Identitas perempuan)
-#ksrandom (Untuk hal random)
-#ksmutualan (Untuk mutualan)
-#ksask (Untuk membagikan hal bodoh)
-#kscurhat (Untuk curhat masalah)
+#ckfboy (Untuk Identitas Laki-Laki)
+#ckfgirl (Untuk Identitas perempuan)
+#ckfrandom (Untuk hal random)
+#ckfmutualan (Untuk mutualan)
+#ckfask (Untuk membagikan hal bodoh)
+#ckfcurhat (Untuk curhat masalah)
 """)
