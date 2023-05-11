@@ -9,8 +9,8 @@ db_url = os.environ.get("DB_URL", "mongodb+srv://muhamadfaiz:muhamadfaiz@cluster
 db_name = os.environ.get("DB_NAME", "telegram") #bisa diganti sesuai kebutuhan
 # =========================================================== #
 
-channel_1 = int(os.environ.get("CHANNEL_1", "-1001215547362"))
-channel_2 = int(os.environ.get("CHANNEL_2", "-1001439465967")) #untuk group comentar user
+channel_1 = int(os.environ.get("CHANNEL_1", "-1001439465967"))
+channel_2 = int(os.environ.get("CHANNEL_2", "-1001215547362")) #untuk group comentar user
 channel_log = int(os.environ.get("CHANNEL_LOG", "-1001515293309"))
 # =========================================================== #
 
