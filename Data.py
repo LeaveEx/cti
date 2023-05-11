@@ -3,12 +3,12 @@ from pyrogram.types import InlineKeyboardButton
 class Data:
     HELP = """
 <b> ❏ Silahkan kirim pesan anda menggunakan hastag dibawah ini:
-#ckfboy (Untuk Identitas Laki-Laki)
-#ckfgirl (Untuk Identitas perempuan)
-#ckfrandom (Untuk hal random)
-#ckfmutualan (Untuk mutualan)
-#ckfask (Untuk membagikan hal bodoh)
-#ckfcurhat (Untuk curhat masalah)
+#ctnboy (Untuk Identitas Laki-Laki)
+#ctngirl (Untuk Identitas perempuan)
+#ctnrandom (Untuk hal random)
+#ctnmutualan (Untuk mutualan)
+#ctnask (Untuk membagikan hal bodoh)
+#ctncurhat (Untuk curhat masalah)
 """
 
     close = [
