@@ -2,19 +2,19 @@ import os
 
 api_id = int(os.environ.get("API_ID", "3330416"))
 api_hash = os.environ.get("API_HASH", "551d747d492ad11a10054fbf672d16e3")
-bot_token = os.environ.get("BOT_TOKEN", "6241997964:AAGuP2icL9Th4BYLbNhT5J5TamGG7Ej44Oo")
+bot_token = os.environ.get("BOT_TOKEN", "6057365695:AAHxOnS7bNXMIv-eoQEJWf7gn16KCaX72H0")
 # =========================================================== #
 
 db_url = os.environ.get("DB_URL", "mongodb+srv://muhamadfaiz:muhamadfaiz@cluster0.mpwspud.mongodb.net/?retryWrites=true&w=majority")
 db_name = os.environ.get("DB_NAME", "telegram") #bisa diganti sesuai kebutuhan
 # =========================================================== #
 
-channel_1 = int(os.environ.get("CHANNEL_1", "-1001820241577"))
-channel_2 = int(os.environ.get("CHANNEL_2", "-1001608833465")) #untuk group comentar user
+channel_1 = int(os.environ.get("CHANNEL_1", "-1001215547362"))
+channel_2 = int(os.environ.get("CHANNEL_2", "-1001439465967")) #untuk group comentar user
 channel_log = int(os.environ.get("CHANNEL_LOG", "-1001812494582"))
 # =========================================================== #
 
-id_admin = int(os.environ.get("ID_ADMIN", "1680004937"))
+id_admin = int(os.environ.get("ID_ADMIN", "742495738"))
 # =========================================================== #
 
 batas_kirim = int(os.environ.get("BATAS_KIRIM", "2"))
