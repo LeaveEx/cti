@@ -11,7 +11,7 @@ db_name = os.environ.get("DB_NAME", "telegram") #bisa diganti sesuai kebutuhan
 
 channel_1 = int(os.environ.get("CHANNEL_1", "-1001439465967"))
 channel_2 = int(os.environ.get("CHANNEL_2", "-1001215547362")) #untuk group comentar user
-channel_log = int(os.environ.get("CHANNEL_LOG", "-1001515293309"))
+channel_log = int(os.environ.get("CHANNEL_LOG", "-1001610114929"))
 # =========================================================== #
 
 id_admin = int(os.environ.get("ID_ADMIN", "1680004937"))
