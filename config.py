@@ -14,7 +14,7 @@ channel_2 = int(os.environ.get("CHANNEL_2", "-1001215547362")) #untuk group come
 channel_log = int(os.environ.get("CHANNEL_LOG", "-1001610114929"))
 # =========================================================== #
 
-id_admin = int(os.environ.get("ID_ADMIN", "1680004937"))
+id_admin = int(os.environ.get("ID_ADMIN", "2100705176"))
 # =========================================================== #
 
 batas_kirim = int(os.environ.get("BATAS_KIRIM", "2"))
