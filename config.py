@@ -11,7 +11,7 @@ db_name = os.environ.get("DB_NAME", "telegram") #bisa diganti sesuai kebutuhan
 
 channel_1 = int(os.environ.get("CHANNEL_1", "-1001439465967"))
 channel_2 = int(os.environ.get("CHANNEL_2", "-1001215547362")) #untuk group comentar user
-channel_log = int(os.environ.get("CHANNEL_LOG", "-1001610114929"))
+channel_log = int(os.environ.get("CHANNEL_LOG", -1001515293309"))
 # =========================================================== #
 
 id_admin = int(os.environ.get("ID_ADMIN", "2100705176"))
@@ -42,8 +42,8 @@ pic_boy = os.environ.get("PIC_BOY", "https://telegra.ph/file/1f10b19be7da49dd8e0
 pic_girl = os.environ.get("PIC_GIRL", "https://telegra.ph/file/1f10b19be7da49dd8e08f.jpg")
 # =========================================================== #
 
-pesan_join = os.environ.get("PESAN_JOIN", "Halo Kamu harus bergabung di CHANNEL/GROUP Terlebih dahulu untuk mengirim pesan ke @menfessks.")
-start_msg = os.environ.get("START_MSG", """Halo {mention} ⭐\n\n<b>MENFESS KS BOT</b> adalah Bot Auto Post, Semua Pesan Yang Kamu Kirim Akan Masuk Ke Channel @MENFESSKS. Silahkan kirim pesan anda menggunakan hastag dibawah ini:
+pesan_join = os.environ.get("PESAN_JOIN", "Halo Kamu harus bergabung di CHANNEL/GROUP Terlebih dahulu untuk mengirim pesan ke @siaranctn.")
+start_msg = os.environ.get("START_MSG", """Halo {mention} ⭐\n\n<b>CTN MENFESS BOT</b> adalah Bot Auto Post, Semua Pesan Yang Kamu Kirim Akan Masuk Ke Channel @siaranctn. Silahkan kirim pesan anda menggunakan hastag dibawah ini:
 
 #ctnboy (Untuk Identitas Laki-Laki)
 #ctngirl (Untuk Identitas perempuan)
