@@ -25,7 +25,7 @@ START_MESSAGE_BUTTONS = [
 
 @Bot.on_message()
 async def on_message(client: Client, msg: Message):
-    if msg.chat.type == enums.ChatType.PRIVATE:
+    if msg.chat.type == enums.ChatType.SUPERGROUP:
         if msg.from_user != None:
             uid = msg.from_user.id
         else:
