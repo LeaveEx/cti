@@ -26,7 +26,7 @@ batas_gfrent = int(os.environ.get("BATAS_GFRENT", "10"))
 batas_bfrent = int(os.environ.get("BATAS_BFRENT", "10"))
 # =========================================================== #
 
-biaya_kirim = int(os.environ.get("BIAYA_KIRIM", "10"))
+biaya_kirim = int(os.environ.get("BIAYA_KIRIM", "50"))
 biaya_talent = int(os.environ.get("BIAYA_TALENT", "80"))
 biaya_daddy_sugar = int(os.environ.get("BIAYA_DADDY_SUGAR", "70"))
 biaya_moansgirl = int(os.environ.get("BIAYA_MOANSGIRL", "60"))
