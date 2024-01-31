@@ -5,7 +5,7 @@ api_hash = os.environ.get("API_HASH", "4a01e3596661ba4bf609d15c1f9e129b")
 bot_token = os.environ.get("BOT_TOKEN", "6920903405:AAESzgtmVdKp61m4l0ikZHBilEVSZ-s3QbY")
 # =========================================================== #
 
-db_url = os.environ.get("DB_URL", "mongodb+srv://senzu:senzu@cluster0.1mnebmg.mongodb.net/?retryWrites=true&w=majority")
+db_url = os.environ.get("DB_URL", "mongodb+srv://faizsen:faizsen@cluster0.eyodrln.mongodb.net/?retryWrites=true&w=majority")
 db_name = os.environ.get("DB_NAME", "telegram") #bisa diganti sesuai kebutuhan
 # =========================================================== #
 
